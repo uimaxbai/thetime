@@ -1,7 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
-.timeStr {
+.main {
   font-family: 'JetBrains Mono', monospace;
+}
+
+.timeStr {
   font-weight: bold;
   font-size: 5em;
+}
+
+.timezone {
+  text-align: left;
+  position: relative;
+  left: 0;
 }
