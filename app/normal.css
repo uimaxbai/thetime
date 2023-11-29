@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-
-.main {
-  font-family: 'JetBrains Mono', monospace;
+* {
+  user-select: none;
 }
 
 .timeStr {
@@ -13,4 +11,17 @@
   text-align: left;
   position: relative;
   left: 0;
+}
+.dateString {
+  font-size: 1.5rem;
+}
+h1 time span {
+  width: 100%;
+  font-size:10vw;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #333;
+    color: white;
+  }
 }
