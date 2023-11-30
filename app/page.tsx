@@ -2,16 +2,39 @@
 import React, { useState, useEffect } from 'react';
 import './normal.css';
 
+async function getTime(timezone: string) {
+  try {
+    const response = await fetch('http://worldtimeapi.org/api/timezone/'+timezone); // Update with your server URL
+    const data = await response.json();
+    return data;
+  }
+  catch (e) {
+    console.error(e);
+    return {};
+  }
+}
+
 export default function Home() {
   const [date, setDate] = useState(new Date());
 
+  // TODO: subtract time it took for server to respondS
   useEffect(() => {
+    let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    let currentTime = date.getTime();
+    let response: object;
     const timer = setInterval(() => {
-      setDate(new Date());
-    }, 1);
+      // console.log("hi");
+      currentTime += 10;
+      setDate(new Date(currentTime));
+    }, 10);
+    const getTime1 = setInterval(function () {
+      timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      response = getTime(timezone);
+      setDate(new Date(response.datetime));
+      currentTime = date.getTime();
+    }, 60000);
     var offset = date.getTimezoneOffset(), o = Math.abs(offset);
     var offsetStr = (offset > 0 ? "-" : "+") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
-    let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     document.getElementById('timezone')!.innerText = "Timezone: " + timezone + " (" + offsetStr + ")";
 
     return () => {
