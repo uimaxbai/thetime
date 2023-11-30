@@ -18,17 +18,18 @@ export default function Home() {
       clearInterval(timer);
     };
   }, []);
-  let ms = ('00' + date.getMilliseconds()).slice(-3);
+  let ms = ('0' + Math.floor(date.getMilliseconds() / 10)).slice(-2);
   let s = ('0' + date.getSeconds()).slice(-2);
   let m = ('0' + date.getMinutes()).slice(-2);
   let h = ('0' + date.getHours()).slice(-2);
-  let dateStr = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "T" + h + ":" + m + ":" + s + "." + ms
-  let dateStr1 = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
-  let timeStr = h + ":" + m + ":" + s + "." + ms
+  let dateStr = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "T" + h + ":" + m + ":" + s + "." + ms;
+  let dateStr1 = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+  let timeStr = h + ":" + m + ":" + s;
+  let msStr = "." + ms;
   return (
     <main className="main flex min-h-screen flex-col items-center justify-center p-4">
       <div>
-        <h1 className="timeStr"><time dateTime={dateStr} className="timeEl flex flex-col" suppressHydrationWarning><span className="dateString" suppressHydrationWarning>{dateStr1}</span><span suppressHydrationWarning>{timeStr}</span></time></h1>
+        <h1 className="timeStr"><time dateTime={dateStr} className="timeEl flex flex-col" suppressHydrationWarning><span className="dateString" suppressHydrationWarning>{dateStr1}</span><div><span suppressHydrationWarning>{timeStr}</span><span className='ms' suppressHydrationWarning>{msStr}</span></div></time></h1>
         <div className="info-div flex gap-2 flex-row justify-items-start w-full">
           <span id="timezone" className="timezone"></span>
           <span></span>
