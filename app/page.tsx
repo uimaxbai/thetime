@@ -58,6 +58,7 @@ export default function Home() {
   );
   
   // TODO: add transitions
+  // TODO: fix native dark mode
   useEffect(() => {
     // console.log(bgColor);
     document.body.style.background = bgColor;
