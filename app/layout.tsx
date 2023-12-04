@@ -32,7 +32,6 @@ export const metadata: Metadata = {
   keywords: 'time, thetime, current time',
   manifest: '/manifest.webmanifest',
   themeColor: "#000000",
-  TileColor: "#2b5797"
 }
 
 export default function RootLayout({
