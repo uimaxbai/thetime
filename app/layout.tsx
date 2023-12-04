@@ -31,7 +31,6 @@ export const metadata: Metadata = {
   description: 'Literally just the time.',
   keywords: 'time, thetime, current time',
   manifest: '/manifest.webmanifest',
-  mask: "/safari-pinned-tab.svg",
   themeColor: "#000000",
   TileColor: "#2b5797"
 }
