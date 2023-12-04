@@ -19,21 +19,84 @@
 
 h1 time span {
   width: 100%;
-  font-size: 10vw;
+  font-size: 14vw;
 }
+
+time div {
+  font-size: 14vw;
+}
+
+
+body {
+  color: #000;
+  background: #fff;
+}
+
 
 @media (prefers-color-scheme: dark) {
   body {
-    background: #333;
-    color: white;
+    background: #000;
+    color: #f00;
   }
 }
 
+body.light {
+  color: #000;
+  background: #fff;
+}
+
+body.dark {
+  color: #f00;
+  background: #000;
+}
+
+
+
 .ms {
-  font-size: 5vw;
+  font-size: 6vw;
 }
 
 .mode-button {
   border-radius: .25rem;
+}
 
+/* .moon-button {
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  text-shadow: var(--shadow-md);
+} */
+
+body {
+  --transition-d: 0.5s;
+  -webkit-transition: var(--transition-d) ease;
+  -moz-transition: var(--transition-d) ease;
+  -o-transition: var(--transition-d) ease;
+  transition: var(--transition-d) ease;
+}
+
+.react-toggle-track div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+}
+
+@media (max-width: 800px) {
+
+  .info-div,
+  .info-div div {
+    flex-direction: column;
+  }
+
+  .info-div div {
+    align-items: baseline;
+  }
+
+  .tower-cell {
+    font-size: 5vw;
+  }
+}
+
+.tower-cell {
+  font-size: 2rem;
 }

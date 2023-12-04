@@ -8,6 +8,9 @@ import './normal.css';
 import { MoonFill, SunFill } from 'react-bootstrap-icons';
 import { useMediaQuery } from "react-responsive";
 
+import Toggle from "react-toggle";
+import "react-toggle/style.css"; // for ES6 modules
+
 // Prevent FontAwesome icons from changing size.
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -16,11 +19,14 @@ config.autoAddCss = false; /* eslint-disable import/first */
 async function getTime(timezone: string) {
   try {
     let currentTime = (new Date()).getTime();
-    const response = await fetch('https://worldtimeapi.org/api/timezone/'+timezone);
+    const response = await fetch('https://worldtimeapi.org/api/timezone/' + timezone);
     const data = await response.json();
     // console.log(data);
     let lastTime = (new Date()).getTime() - currentTime;
-    let diff = (new Date()).getTime() - (Date.parse(data.datetime) - lastTime);
+    // console.log(lastTime);
+    // console.log(Date.parse(data.datetime));
+
+    let diff = (new Date()).getTime() - (Date.parse(data.datetime) + lastTime);
     // console.log(lastTime);
     return diff;
   }
@@ -45,41 +51,55 @@ async function actuallyGetTime() {
 
 export default function Home() {
   const [date, setDate] = useState(new Date());
-  const [isDark, setIsDark] = useState(false);
-  const [bgColor, setBgColor] = useState("#fff");
-  const [textColor, setTextColor] = useState("#000");
+  const [itRan, setItRan] = useState(false);
+
+  useEffect(() => {
+    let theme = localStorage.getItem("theme");
+    if (theme !== null) {
+      setIsDark(theme === "true");
+      setItRan(true);
+      // console.log("1: ", true);
+    }
+  }, []);
+
+
 
   const systemPrefersDark = useMediaQuery(
     {
       query: "(prefers-color-scheme: dark)",
     },
     undefined,
-    (isSystemDark: any) => setIsDark(isSystemDark)
+    (isSystemDark: boolean) => { if (itRan === false) setIsDark(isSystemDark) }
   );
-  
-  // TODO: add transitions
-  // TODO: fix native dark mode
+
+  const [isDark, setIsDark] = useState(false);
+
+
   useEffect(() => {
-    // console.log(bgColor);
-    document.body.style.background = bgColor;
-    document.body.style.color = textColor;
-  }, [bgColor, textColor]);
-  
-  function handleMode(e: any) {
-    // console.log("press");
-    if (isDark === true) {
-      // console.log("dark -> lighjt");
-      setBgColor("#fff")
-      setTextColor("#000");
-      setIsDark(false);
+    if (isDark) {
+      document.body.classList.add('dark');
+      document.body.classList.remove('light');
+    } else {
+      document.body.classList.remove('dark');
+      document.body.classList.add('light');
     }
-    else {
-      // console.log("light -> dark");
-      setBgColor("#333")
-      setTextColor("#fff");
-      setIsDark(true);
+  }, [isDark]);
+
+  useEffect(() => {
+    let theme = localStorage.getItem("theme");
+    let itRan1 = false;
+    if (theme !== null) {
+      itRan1 = true;
     }
-  }
+    if (itRan === false && itRan1 === false) {
+      // console.log(itRan);
+      setIsDark(systemPrefersDark ? true : false);
+    }
+  }, [setIsDark, systemPrefersDark, itRan]);
+
+  useEffect(() => {
+    localStorage.setItem('theme', isDark.toString());
+  }, [isDark]);
 
 
   useEffect(() => {
@@ -128,19 +148,24 @@ export default function Home() {
   return (
     <main className="main flex min-h-screen flex-col items-center justify-center p-4">
       <div>
-          <h1 className="timeStr">
-            <time dateTime={dateStr} className="timeEl flex flex-col" suppressHydrationWarning>
-              <span className="dateString" suppressHydrationWarning>{dateStr1}</span>
-              <div>
-                <span suppressHydrationWarning>{timeStr}</span>
-                <span className='ms' suppressHydrationWarning>{msStr}</span>
-                <span id="tower-cell" className='tower-cell ml-2 text-2xl'><FontAwesomeIcon icon={faTowerCell}  /></span>
-              </div>
-            </time>
-          </h1>
+        <h1 className="timeStr">
+          <time dateTime={dateStr} className="timeEl flex flex-col" suppressHydrationWarning>
+            <span className="dateString" suppressHydrationWarning>{dateStr1}</span>
+            <div>
+              <span suppressHydrationWarning>{timeStr}</span>
+              <span className='ms' suppressHydrationWarning>{msStr}</span>
+              <span id="tower-cell" className='tower-cell ml-2'><FontAwesomeIcon icon={faTowerCell} /></span>
+            </div>
+          </time>
+        </h1>
         <div className="info-div flex gap-2 flex-row justify-between w-full">
           <div className="gap-2 flex items-center">
-            <button onClick={handleMode} className="mode-button shadow-md flex items-center justify-center"><MoonFill /></button>
+            <Toggle
+              checked={isDark}
+              onChange={({ target }) => setIsDark(target.checked)}
+              icons={{ checked: "🌙", unchecked: "🔆" }}
+              aria-label="Dark mode toggle"
+            />
             <span id="timezone" className="timezone">Timezone:</span>
           </div>
           <span>UTC: <time id="utc" suppressHydrationWarning dateTime={utcDateStr}>{utcDateStr1} {utcTimeStr}</time> </span>
