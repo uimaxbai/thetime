@@ -10,6 +10,7 @@ const mono = JetBrains_Mono({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'The Time',
   description: 'Literally just the time.',
+  keywords: 'time, thetime, current time'
 }
 
 export default function RootLayout({
