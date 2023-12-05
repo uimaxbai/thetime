@@ -7,5 +7,5 @@ const withPWA = require('next-pwa')({
 module.exports = withPWA({
   reactStrictMode: false,
   distDir: 'dist',
-  output: export,
+  output: "export",
 });
