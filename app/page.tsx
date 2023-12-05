@@ -14,7 +14,7 @@ import "react-toggle/style.css"; // for ES6 modules
 // Prevent FontAwesome icons from changing size.
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
-config.autoAddCss = false; /* eslint-disable import/first */
+config.autoAddCss = false;
 
 async function getTime(timezone: string) {
   try {
