@@ -5,11 +5,7 @@ const withPWA = require('next-pwa')({
 })
 
 module.exports = withPWA({
-    reactStrictMode: false,
-    distDir: 'dist',
-    pwa: {
-        dest: "public",
-        register: true,
-        skipWaiting: true,
-    },
-})
+  reactStrictMode: false,
+  distDir: 'dist',
+  output: export,
+});
