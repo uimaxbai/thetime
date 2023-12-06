@@ -145,6 +145,11 @@ export default function Home() {
   let utcDateStr = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate() + "T" + ('0' + date.getUTCHours()).slice(-2) + ":" + ('0' + date.getUTCMinutes()).slice(-2) + ":" + ('0' + date.getUTCSeconds()).slice(-2) + "." + ('0' + Math.floor(date.getUTCMilliseconds() / 10)).slice(-2);
   let utcTimeStr = ('0' + date.getUTCHours()).slice(-2) + ":" + ('0' + date.getUTCMinutes()).slice(-2) + ":" + ('0' + date.getUTCSeconds()).slice(-2) + "." + ('0' + Math.floor(date.getUTCMilliseconds() / 10)).slice(-2);
   let utcDateStr1 = ('0' + date.getUTCDate()).slice(-2) + "/" + (date.getUTCMonth() + 1) + "/" + date.getUTCFullYear();
+
+  useEffect(() => {
+    document.title = timeStr + " | The Time";
+  }, [timeStr]);
+
   return (
     <main className="main flex min-h-screen flex-col items-center justify-center p-4">
       <div>

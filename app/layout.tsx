@@ -28,9 +28,30 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'The Time',
-  description: 'Literally just the time.',
+  description: 'A simple website that shows the time. Night mode for astronomers included.',
   keywords: 'time, thetime, current time',
-  manifest: '/manifest.webmanifest'
+  manifest: '/manifest.webmanifest',
+  openGraph: {
+    title: 'The Time',
+    description: 'A simple website that shows the time. Night mode for astronomers included.',
+    url: "https://thetime.pages.dev",
+    siteName: "The Time",
+    images: [
+
+    ],
+    locale: "en",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Time",
+    description: "A simple website that shows the time. Night mode for astronomers included.",
+    creator: "@uimaxbai",
+    images: [
+
+    ]
+  },
+  robots: "index, follow, max-snippet: -1, max-image-preview:large, max-video-preview: -1"
 }
 
 export default function RootLayout({
