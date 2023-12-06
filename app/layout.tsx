@@ -30,8 +30,7 @@ export const metadata: Metadata = {
   title: 'The Time',
   description: 'Literally just the time.',
   keywords: 'time, thetime, current time',
-  manifest: '/manifest.webmanifest',
-  themeColor: "#000000",
+  manifest: '/manifest.webmanifest'
 }
 
 export default function RootLayout({
