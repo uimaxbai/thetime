@@ -139,12 +139,12 @@ export default function Home() {
   let h = ('0' + date.getHours()).slice(-2);
   let d = ('0' + date.getDate()).slice(-2);
   let dateStr = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "T" + h + ":" + m + ":" + s + "." + ms;
-  let dateStr1 = d + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+  let dateStr1 = d + "/" + ('0' + (date.getMonth() + 1).toString()).slice(-2) + "/" + date.getFullYear();
   let timeStr = h + ":" + m + ":" + s;
   let msStr = "." + ms;
   let utcDateStr = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate() + "T" + ('0' + date.getUTCHours()).slice(-2) + ":" + ('0' + date.getUTCMinutes()).slice(-2) + ":" + ('0' + date.getUTCSeconds()).slice(-2) + "." + ('0' + Math.floor(date.getUTCMilliseconds() / 10)).slice(-2);
   let utcTimeStr = ('0' + date.getUTCHours()).slice(-2) + ":" + ('0' + date.getUTCMinutes()).slice(-2) + ":" + ('0' + date.getUTCSeconds()).slice(-2) + "." + ('0' + Math.floor(date.getUTCMilliseconds() / 10)).slice(-2);
-  let utcDateStr1 = ('0' + date.getUTCDate()).slice(-2) + "/" + (date.getUTCMonth() + 1) + "/" + date.getUTCFullYear();
+  let utcDateStr1 = ('0' + date.getUTCDate()).slice(-2) + "/" + ('0' + (date.getUTCMonth() + 1).toString()).slice(-2) + "/" + date.getUTCFullYear();
 
   useEffect(() => {
     document.title = timeStr + " | The Time";
