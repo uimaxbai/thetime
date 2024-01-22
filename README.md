@@ -1,5 +1,7 @@
 # thetime
 
+Archived. See the new SvelteKit version at [https://github.com/uimaxbai/newtime](https://github.com/uimaxbai/newtime).
+
 It's literally THE TIME! (it's not a timer!!)
 
 [thetime.pages.dev](https://thetime.pages.dev)
